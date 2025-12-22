@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🌍 Live Website
 
-## Getting Started
+🔗 Live Demo:  
 
-First, run the development server:
+# Care – A Trusted Baby Sitting & Elderly Care Service Platform
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Care is a web-based caregiving service platform that helps families find reliable and trusted care services for children, elderly people, and sick family members. Users can easily browse services, book caregivers based on duration and location, and track their bookings through a secure and user-friendly system.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The main goal of this project is to make caregiving easy, secure, and accessible for everyone.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌟 Features
 
-## Learn More
+- Responsive design (Mobile, Tablet, Desktop)
+- User Authentication (Email & Password, Google Login)
+- Secure Private Routes for Booking & My Bookings
+- Service Categories:
+  - Baby Sitting Service
+  - Elderly Care Service
+  - Sick People Home Care
+- Dynamic Booking System:
+  - Select service duration
+  - Choose location (Division, District, City, Area, Address)
+  - Automatic total cost calculation
+- Booking Status Management:
+  - Pending
+  - Confirmed
+  - Completed
+  - Cancelled
+- My Bookings Page:
+  - View all bookings
+  - Track booking status
+  - Cancel booking
+- Service Detail Pages with booking option
+- Custom 404 Error Page
+- SEO Metadata for Home & Service pages
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Frontend:**
+- Next.js  (App Router)
+- Tailwind CSS
 
-## Deploy on Vercel
+**Backend / Services:**
+- Firebase Authentication
+- Firebase Firestore Database
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Other Tools:**
+- React Context API
+- Environment Variables (.env)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🔐 Authentication
+
+- Email & Password based login and registration
+- Google social login supported
+- Password validation:
+  - Minimum 6 characters
+  - At least one uppercase letter
+  - At least one lowercase letter
+
+---
+
+Thank You.
