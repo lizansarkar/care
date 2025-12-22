@@ -1,3 +1,5 @@
+
+import { CalendarDemo } from "@/component/CalendarDemo";
 import ServiceCard from "@/component/ServiceCard";
 import { services } from "@/library/servicesData";
 
@@ -12,6 +14,15 @@ export default function Home() {
         <p className="mt-4 text-lg">
           Baby sitting, elderly care & home care services
         </p>
+
+        <div className="flex justify-center md:justify-end">
+          <div className="bg-white p-4 rounded-xl shadow-2xl border border-slate-200">
+            <p className="text-sm font-semibold text-slate-500 mb-3 text-center">
+              Check Date Availability
+            </p>
+            <CalendarDemo></CalendarDemo>
+          </div>
+        </div>
       </section>
 
       {/* 🔹 About Section */}
