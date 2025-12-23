@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* 🔹 Logo */}
         <Link href="/" className="">
-          <img src="/logo.png" alt="" className="h-15 w-40"/>
+          <img src="/logo.png" alt="" className="h-10 w-35"/>
         </Link>
 
         {/* 🔹 Menu */}
