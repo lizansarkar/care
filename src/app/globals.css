@@ -4,8 +4,41 @@
 @custom-variant dark (&:is(.dark *));
 @plugin "daisyui";
 
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
 .btn {
-  @apply px-5 py-2 bg-sky-100 text-black font-bold rounded shadow shadow-sky-100 cursor-pointer hover:bg-sky-200 hover:scale-105 duration-200 active:scale-95 hover:shadow-xl active:shadow-none active:bg-white disabled:text-gray-400 disabled:active:bg-sky-100 disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:bg-sky-100 disabled:cursor-auto
+  @apply px-5 py-2 bg-red-500 text-black font-bold rounded shadow shadow-red-100 cursor-pointer hover:bg-red-200 hover:scale-105 duration-200 active:scale-95 hover:shadow-xl active:shadow-none active:bg-white disabled:text-gray-400 disabled:active:bg-red-100 disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:bg-red-100 disabled:cursor-auto
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2.5 bg-red-500 text-white font-semibold rounded-full 
+    shadow-lg shadow-red-200 cursor-pointer 
+    transition-all duration-300 ease-in-out
+    
+    /* Hover Effects */
+    hover:bg-red-600 hover:shadow-red-300 hover:-translate-y-0.5
+    
+    /* Active/Click Effects */
+    active:scale-95 active:shadow-inner
+    
+    /* Disabled States */
+    disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed 
+    disabled:shadow-none disabled:hover:translate-y-0
+    
+    /* Accessibility */
+    focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply px-6 py-2.5 bg-transparent border-2 border-red-500 text-red-500 cursor-pointer
+    font-semibold rounded-full transition-all duration-300
+    hover:bg-red-50 hover:text-red-600 active:scale-95;
+  }
 }
 
 @theme inline {
