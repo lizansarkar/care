@@ -1,5 +1,6 @@
 
 import { CalendarDemo } from "@/component/CalendarDemo";
+import Banner from "@/component/home/Banner";
 import ServiceCard from "@/component/ServiceCard";
 import { services } from "@/library/servicesData";
 
@@ -7,23 +8,7 @@ export default function Home() {
   return (
     <main>
       {/* 🔹 Banner Section */}
-      <section className="bg-blue-600 text-white text-center py-20">
-        <h1 className="text-4xl font-bold">
-          Trusted Care Services for Your Loved Ones
-        </h1>
-        <p className="mt-4 text-lg">
-          Baby sitting, elderly care & home care services
-        </p>
-
-        <div className="flex justify-center md:justify-end">
-          <div className="bg-white p-4 rounded-xl shadow-2xl border border-slate-200">
-            <p className="text-sm font-semibold text-slate-500 mb-3 text-center">
-              Check Date Availability
-            </p>
-            <CalendarDemo></CalendarDemo>
-          </div>
-        </div>
-      </section>
+      <Banner></Banner>
 
       {/* 🔹 About Section */}
       <section className="max-w-6xl mx-auto px-4 py-16">
