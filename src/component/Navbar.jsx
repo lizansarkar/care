@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LoginButton from "./LoginButton";
 
 export default function Navbar() {
   return (
@@ -30,13 +31,17 @@ export default function Navbar() {
           </li>
 
           {/* 🔹 Auth Buttons */}
-          <li>
+          {/* <li>
             <Link
               href="/login"
               className="border px-4 py-1 rounded hover:bg-blue-600 hover:text-white"
             >
               Login
             </Link>
+          </li> */}
+
+          <li>
+            <LoginButton></LoginButton>
           </li>
 
           <li>
