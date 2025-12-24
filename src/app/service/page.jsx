@@ -1,22 +1,34 @@
 "use client";
 import ServiceCard from "@/component/ServiceCard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { services } from "@/library/servicesData";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import ServiceSkeleton from "@/component/skelitons/ServiceSkeleton";
 
 export default function Service() {
   const [filter, setFilter] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 🔹 সিমুলেটেড লোডিং ইফেক্ট (পেজ লোড হওয়ার সময় স্কেলিটন দেখাবে)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500); // ১.৫ সেকেন্ড পর স্কেলিটন চলে গিয়ে ডাটা আসবে
+    return () => clearTimeout(timer);
+  }, []);
 
   const categories = ["All", "Baby Care", "Elderly Care", "Home Nursing"];
+  
   const filteredServices =
     filter === "All" ? services : services.filter((s) => s.category === filter);
 
   return (
     <section className="bg-slate-50 min-h-screen py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        {/* 🔹 ১. পেজ হেডার (ব্যানারের সাথে মিল রেখে) */}
+        
+        {/* 🔹 ১. পেজ হেডার */}
         <div className="text-center mb-16 relative">
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-slate-100 text-8xl font-black -z-0 opacity-40 select-none">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-slate-100 text-8xl font-black -z-0 opacity-40 select-none uppercase">
             SERVICES
           </div>
           <h2 className="relative z-10 text-4xl md:text-6xl font-black text-slate-900 mb-4">
@@ -28,49 +40,72 @@ export default function Service() {
           </p>
         </div>
 
-        {/* 🔹 ২. স্মার্ট ফিল্টার বার */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((cat) => (
-            <motion.button
-              key={cat}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setFilter(cat)}
-              className={filter === cat ? "btn-primary" : "btn-outline"}
-            >
-              {cat}
-            </motion.button>
-          ))}
-        </div>
+        {/* 🔹 ২. স্মার্ট ফিল্টার বার (লোডিং অবস্থায় হাইড রাখতে পারেন বা দেখাতে পারেন) */}
+        {!isLoading && (
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {categories.map((cat) => (
+              <motion.button
+                key={cat}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setFilter(cat)}
+                className={filter === cat ? "btn-primary" : "btn-outline"}
+              >
+                {cat}
+              </motion.button>
+            ))}
+          </div>
+        )}
 
-        {/* 🔹 ৩. সার্ভিস গ্রিড (এনিমেটেড) */}
+        {/* 🔹 ৩. সার্ভিস গ্রিড (স্কেলিটন লোডার সহ) */}
         <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredServices.length > 0 ? (
-            filteredServices.map((service) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                key={service.id}
-              >
-                <ServiceCard service={service} />
-              </motion.div>
-            ))
-          ) : (
-            <div className="col-span-full text-center py-20">
-              <p className="text-slate-400 text-xl">
-                No services found in this category.
-              </p>
-            </div>
-          )}
+          <AnimatePresence mode="popLayout">
+            {isLoading ? (
+              // লোডিং অবস্থায় ৬টি স্কেলিটন দেখাবে
+              Array(6).fill(0).map((_, index) => (
+                <motion.div
+                  key={`skeleton-${index}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ServiceSkeleton />
+                </motion.div>
+              ))
+            ) : (
+              // লোডিং শেষ হলে আসল ডাটা দেখাবে
+              filteredServices.length > 0 ? (
+                filteredServices.map((service) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    key={service.id}
+                  >
+                    <ServiceCard service={service} />
+                  </motion.div>
+                ))
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="col-span-full text-center py-20"
+                >
+                  <p className="text-slate-400 text-xl font-medium">
+                    No services found in this category.
+                  </p>
+                </motion.div>
+              )
+            )}
+          </AnimatePresence>
         </motion.div>
 
-        {/* 🔹 ৪. নিচের সেকশনে একটি হেল্প কার্ড */}
+        {/* 🔹 ৪. হেল্প কার্ড সেকশন */}
         <div className="mt-24 bg-slate-950 rounded-[3rem] p-12 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between">
           <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-[80px]"></div>
           <div className="relative z-10">
@@ -82,7 +117,7 @@ export default function Service() {
               schedule.
             </p>
           </div>
-          <button className="btn-contact cursor-pointer">
+          <button className="btn-contact cursor-pointer relative z-10">
             Contact Experts
           </button>
         </div>
