@@ -12,33 +12,29 @@
 }
 
 .btn {
-  @apply px-5 py-2 bg-red-500 text-black font-bold rounded shadow shadow-red-100 cursor-pointer hover:bg-red-200 hover:scale-105 duration-200 active:scale-95 hover:shadow-xl active:shadow-none active:bg-white disabled:text-gray-400 disabled:active:bg-red-100 disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:bg-red-100 disabled:cursor-auto
+  @apply px-5 py-2 bg-red-500 text-black font-bold rounded shadow shadow-red-100 cursor-pointer hover:bg-red-200 hover:scale-105 duration-200 active:scale-95 hover:shadow-xl active:shadow-none active:bg-white disabled:text-gray-400 disabled:active:bg-red-100 disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:bg-red-100 disabled:cursor-auto;
 }
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-2.5 bg-red-500 text-white font-semibold rounded-full 
-    shadow-lg shadow-red-200 cursor-pointer 
+    @apply px-8 py-3 bg-red-500 !text-white font-bold rounded-full 
+    shadow-lg shadow-red-500/30 cursor-pointer 
     transition-all duration-300 ease-in-out
-    
-    /* Hover Effects */
-    hover:bg-red-600 hover:shadow-red-300 hover:-translate-y-0.5
-    
-    /* Active/Click Effects */
+    hover:bg-red-600 hover:shadow-red-500/50 hover:-translate-y-1
     active:scale-95 active:shadow-inner
-    
-    /* Disabled States */
-    disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed 
-    disabled:shadow-none disabled:hover:translate-y-0
-    
-    /* Accessibility */
     focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2;
   }
 
   .btn-outline {
-    @apply px-6 py-2.5 bg-transparent border-2 border-red-500 text-red-500 cursor-pointer
-    font-semibold rounded-full transition-all duration-300
-    hover:bg-red-50 hover:text-red-600 active:scale-95;
+    @apply px-8 py-3 bg-white border-2 border-slate-200 text-slate-600 cursor-pointer
+    font-bold rounded-full transition-all duration-300
+    hover:border-red-500 hover:text-red-500 hover:bg-red-50 active:scale-95;
+  }
+
+  .btn-contact {
+    @apply relative z-10 bg-white text-slate-950 px-8 py-4 rounded-2xl font-black 
+    transition-all duration-300 shadow-xl 
+    hover:bg-red-600 hover:text-white active:scale-95;
   }
 }
 

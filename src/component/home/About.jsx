@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function About() {
   return (
     <section className="relative py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-7xl container mx-auto px-6 md:px-2">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* 🔹 ১. ইমেজ সেকশন (ব্যানারের মতো একটু ক্রিয়েটিভ লুক) */}
           <div className="relative w-full lg:w-1/2">

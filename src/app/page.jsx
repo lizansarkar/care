@@ -4,6 +4,7 @@ import About from "@/component/home/About";
 import Banner from "@/component/home/Banner";
 import ServiceCard from "@/component/ServiceCard";
 import { services } from "@/library/servicesData";
+import Service from "./service/page";
 
 export default function Home() {
   return (
@@ -15,17 +16,7 @@ export default function Home() {
       <About></About>
 
       {/* 🔹 Services Section */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-semibold text-center mb-10">
-          Our Services
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
-      </section>
+      <Service></Service>
 
       {/* 🔹 Testimonials */}
       <section className="bg-gray-100 py-16">

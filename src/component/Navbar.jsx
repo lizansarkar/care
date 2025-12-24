@@ -88,7 +88,7 @@ export default function Navbar() {
           <div className="divider opacity-50"></div>
 
           {/* Mobile Auth Buttons */}
-          <div className="flex flex-col gap-3 px-4 pt-2">
+          <div className="flex flex-col gap-3 px-4">
             <LoginButton></LoginButton>
             <Link
               href="/register"
