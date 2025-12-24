@@ -6,6 +6,47 @@ export default function About() {
   return (
     <section className="relative py-20 bg-white overflow-hidden">
       <div className="max-w-7xl container mx-auto px-6 md:px-2">
+        <div className="relative py-20 overflow-hidden bg-white">
+          {/* 🔹 ব্যাকগ্রাউন্ড ডেকোরেশন (ঐচ্ছিক) */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-50">
+            <div className="absolute top-10 left-[-5%] w-72 h-72 bg-red-50 rounded-full blur-[120px]"></div>
+          </div>
+
+          <div className="max-w-6xl mx-auto px-6 relative z-10">
+            <div className="flex flex-col items-center text-center">
+              {/* ছোট ট্যাগলাইন */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                </span>
+                <span className="text-xs font-black uppercase tracking-[3px]">
+                  Who We Are
+                </span>
+              </div>
+
+              {/* মেইন টাইটেল */}
+              <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-8">
+                We Are Dedicated To <br />
+                <span className="text-red-600 relative">
+                  Your Health & Care
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-3 text-red-200 -z-10"
+                    viewBox="0 0 100 10"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0 5 Q 50 10 100 5"
+                      stroke="currentColor"
+                      strokeWidth="5"
+                      fill="none"
+                    />
+                  </svg>
+                </span>
+              </h1>
+            </div>
+          </div>
+        </div>
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* 🔹 ১. ইমেজ সেকশন (ব্যানারের মতো একটু ক্রিয়েটিভ লুক) */}
           <div className="relative w-full lg:w-1/2">

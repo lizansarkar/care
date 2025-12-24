@@ -6,8 +6,7 @@ export const services = [
     description:
       "Professional nursing for newborn babies including bathing and feeding assistance.",
     price: 1200,
-    image:
-      "https://images.unsplash.com/photo-1555252333-978fead06c92?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.9,
     features: ["24/7 Support", "Certified Nanny", "Health Monitoring"],
   },
@@ -30,8 +29,7 @@ export const services = [
     description:
       "Providing emotional support and companionship for seniors living alone.",
     price: 800,
-    image:
-      "https://images.unsplash.com/photo-1581578731522-745505146317?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.7,
     features: ["Walking Support", "Conversation", "Daily Activity Help"],
   },
@@ -66,8 +64,7 @@ export const services = [
     description:
       "Experienced caregivers for seniors suffering from Alzheimer's or Dementia.",
     price: 1800,
-    image:
-      "https://images.unsplash.com/photo-1581579133037-1200df3680bf?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.8,
     features: ["Safety Monitoring", "Memory Exercises", "Patient Handling"],
   },
@@ -90,8 +87,7 @@ export const services = [
     description:
       "Expert caregivers specifically trained to handle twins or multiple babies.",
     price: 2200,
-    image:
-      "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 5.0,
     features: ["Dual Support", "Synchronized Feeding", "High Energy"],
   },
@@ -102,8 +98,7 @@ export const services = [
     description:
       "Regular blood sugar monitoring and diet control for elderly diabetic patients.",
     price: 1100,
-    image:
-      "https://images.unsplash.com/photo-1505751172107-573256a059d7?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.7,
     features: ["Sugar Testing", "Diet Plan", "Insulin Support"],
   },
@@ -138,8 +133,7 @@ export const services = [
     description:
       "Holistic support for stroke patients including physical and speech therapy help.",
     price: 2800,
-    image:
-      "https://images.unsplash.com/photo-1579154235602-3c35874c4314?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.8,
     features: ["Rehabilitation", "Constant Monitoring", "Feeding Tube Help"],
   },
@@ -150,8 +144,7 @@ export const services = [
     description:
       "Strong and gentle assistants for elderly people who use wheelchairs.",
     price: 900,
-    image:
-      "https://images.unsplash.com/photo-1534705864385-23696611756b?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.6,
     features: ["Safe Transfer", "Outdoor Walks", "Physical Support"],
   },
@@ -174,8 +167,7 @@ export const services = [
     description:
       "Pain management and therapeutic massage for patients with chronic illnesses.",
     price: 1400,
-    image:
-      "https://images.unsplash.com/photo-1544161515-4ae6ce6ea858?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.7,
     features: ["Massage Therapy", "Medication", "Comfort Support"],
   },
@@ -222,8 +214,7 @@ export const services = [
     description:
       "Ensuring seniors take the right medicine at the right time accurately.",
     price: 600,
-    image:
-      "https://images.unsplash.com/photo-1471864190281-ad5f9f81ce4c?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.9,
     features: ["Pill Organizing", "Timely Alerts", "Record Keeping"],
   },
@@ -234,8 +225,7 @@ export const services = [
     description:
       "Trained nannies to supervise children specifically during pool time.",
     price: 1200,
-    image:
-      "https://images.unsplash.com/photo-1519225495810-75124922dd04?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.4,
     features: ["Water Safety", "First Aid", "Supervision"],
   },
@@ -246,8 +236,7 @@ export const services = [
     description:
       "Intensive physical therapy sessions for home-bound stroke survivors.",
     price: 1600,
-    image:
-      "https://images.unsplash.com/photo-1586773860418-d3b979505c21?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.8,
     features: ["Motor Skill Help", "Muscle Strength", "Progress Tracking"],
   },
@@ -258,8 +247,7 @@ export const services = [
     description:
       "Counseling and cognitive support for elderly dealing with depression.",
     price: 1900,
-    image:
-      "https://images.unsplash.com/photo-1527137342181-19aab11a8ee1?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.7,
     features: ["Active Listening", "Socialization", "Mental Games"],
   },
@@ -270,8 +258,7 @@ export const services = [
     description:
       "Traditional and modern massage techniques for baby's growth and sleep.",
     price: 900,
-    image:
-      "https://images.unsplash.com/photo-1544126592-807daa2b565b?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.9,
     features: ["Muscle Growth", "Relaxation", "Certified Expert"],
   },
@@ -318,8 +305,7 @@ export const services = [
     description:
       "Short-term childcare solutions for busy parents during the weekends.",
     price: 1500,
-    image:
-      "https://images.unsplash.com/photo-1510333300264-df475827bcdb?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=800",
     rating: 4.8,
     features: ["Fun Activities", "Evening Care", "Flexible Hours"],
   },

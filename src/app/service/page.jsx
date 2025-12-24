@@ -106,7 +106,7 @@ export default function Service() {
         </motion.div>
 
         {/* 🔹 ৪. হেল্প কার্ড সেকশন */}
-        <div className="mt-24 bg-slate-950 rounded-[3rem] p-12 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between">
+        <div className="mt-24 bg-slate-900 rounded-[3rem] p-12 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between">
           <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-[80px]"></div>
           <div className="relative z-10">
             <h3 className="text-white text-3xl font-bold mb-2">
