@@ -11,9 +11,6 @@
   color: #ff0000;
 }
 
-.btn {
-  @apply px-5 py-2 bg-red-500 text-black font-bold rounded shadow shadow-red-100 cursor-pointer hover:bg-red-200 hover:scale-105 duration-200 active:scale-95 hover:shadow-xl active:shadow-none active:bg-white disabled:text-gray-400 disabled:active:bg-red-100 disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:bg-red-100 disabled:cursor-auto;
-}
 
 @layer components {
   .btn-primary {

@@ -9,11 +9,11 @@ export default function Service() {
   const [filter, setFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
 
-  // 🔹 সিমুলেটেড লোডিং ইফেক্ট (পেজ লোড হওয়ার সময় স্কেলিটন দেখাবে)
+  // practice for skeliton
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500); // ১.৫ সেকেন্ড পর স্কেলিটন চলে গিয়ে ডাটা আসবে
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -57,7 +57,6 @@ export default function Service() {
           </div>
         )}
 
-        {/* 🔹 ৩. সার্ভিস গ্রিড (স্কেলিটন লোডার সহ) */}
         <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -105,7 +104,6 @@ export default function Service() {
           </AnimatePresence>
         </motion.div>
 
-        {/* 🔹 ৪. হেল্প কার্ড সেকশন */}
         <div className="mt-24 bg-slate-900 rounded-[3rem] p-12 relative overflow-hidden text-center md:text-left flex flex-col md:flex-row items-center justify-between">
           <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-[80px]"></div>
           <div className="relative z-10">
