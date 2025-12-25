@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { signInWithPopup } from "firebase/auth";
+import { signIn } from "next-auth/react"; // NextAuth signIn
+import { signInWithPopup } from "firebase/auth"; // Firebase signIn
 import {
   FaEnvelope,
   FaLock,
@@ -18,35 +19,63 @@ import { auth, googleProvider } from "@/library/firebase";
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // 🔹 Google Login Logic
+  // 🔹 ১. সাধারণ ইমেল লগইন লজিক
+  const handleEmailLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res.error) {
+        alert("ভুল ইমেল বা পাসওয়ার্ড দেওয়া হয়েছে!");
+      } else {
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 🔹 ২. গুগল লগইন লজিক
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      // ডাটাবেজে পাঠানোর জন্য অবজেক্ট তৈরি (Register এর মতই)
+      // MongoDB তে ডাটা পাঠানো
       const userData = {
         fullName: user.displayName,
         email: user.email,
         image: user.photoURL,
-        password: "google-auth-user", // সোশ্যাল লগইনে পাসওয়ার্ড লাগে না, তাও একটা ডিফল্ট টেক্সট দেওয়া হলো
+        password: "google-auth-user",
       };
+      await postUser(userData);
 
-      // MongoDB তে সেভ করা (এটি আপনার postUser অ্যাকশনকে কল করবে)
-      const response = await postUser(userData);
+      // NextAuth সেশন আপডেট
+      await signIn("credentials", {
+        email: user.email,
+        password: "google-auth-user",
+        redirect: false,
+      });
 
-      if (response.success || response.message === "User already exists!") {
-        // ইউজার আগে থেকেই থাকুক বা নতুন তৈরি হোক, তাকে ড্যাশবোর্ডে পাঠিয়ে দাও
-        router.push("/");
-      } else {
-        alert("Database error: " + response.message);
-      }
+      router.push("/");
+      router.refresh();
     } catch (error) {
-      console.error("Google Login Error:", error.message);
-      alert("Google Login Failed!");
+      console.error(error);
+      alert("গুগল লগইন ব্যর্থ হয়েছে!");
     } finally {
       setLoading(false);
     }
@@ -75,7 +104,8 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form className="space-y-5">
+        {/* ফর্ম ইভেন্ট হ্যান্ডলার যোগ করা হয়েছে */}
+        <form onSubmit={handleEmailLogin} className="space-y-5">
           {/* Email */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
@@ -83,6 +113,9 @@ export default function LoginPage() {
             </div>
             <input
               type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email Address"
               className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
@@ -95,6 +128,9 @@ export default function LoginPage() {
             </div>
             <input
               type={showPassword ? "text" : "password"}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
@@ -119,11 +155,12 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full bg-red-600 py-4 rounded-2xl shadow-xl shadow-red-100 hover:bg-slate-950 transition-all duration-300 flex items-center justify-center group"
+            disabled={loading}
+            className={`w-full bg-red-600 py-4 rounded-2xl shadow-xl shadow-red-100 hover:bg-slate-950 transition-all duration-300 flex items-center justify-center group ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
           >
-            <span className="text-white font-black text-lg flex items-center gap-3 cursor-pointer">
-              SIGN IN{" "}
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <span className="text-white font-black text-lg flex items-center gap-3">
+              {loading ? "LOGGING IN..." : "SIGN IN"}{" "}
+              {!loading && <FaArrowRight className="group-hover:translate-x-1 transition-transform" />}
             </span>
           </button>
         </form>
@@ -136,14 +173,14 @@ export default function LoginPage() {
           <div className="flex-1 h-[1px] bg-slate-100"></div>
         </div>
 
-        {/* 🔹 Google Login Button */}
+        {/* Google Login Button */}
         <button
           onClick={handleGoogleLogin}
           disabled={loading}
-          className="btn bg-white hover:bg-slate-50 text-black border-[#d6d5d565] w-full rounded-2xl py-7 flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50"
+          className="bg-white hover:bg-slate-50 text-black border border-slate-200 w-full rounded-2xl py-4 flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
         >
           {loading ? (
-            <span className="loading loading-spinner"></span>
+            <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-red-600"></span>
           ) : (
             <>
               <FaGoogle className="text-red-500 text-lg" />
