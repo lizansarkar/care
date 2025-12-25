@@ -1,19 +1,57 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation"; // রিডাইরেক্টের জন্য
 import {
   FaUser,
   FaEnvelope,
   FaLock,
   FaPhone,
   FaArrowRight,
+  FaEye,
+  FaEyeSlash,
 } from "react-icons/fa";
+import { postUser } from "@/actions/server/auth";
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await postUser(formData);
+
+      if (response.success) {
+        alert(response.message);
+        router.push("/");
+      } else {
+        alert(response.message);
+      }
+    } catch (error) {
+      console.error("Registration failed", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-12 relative overflow-hidden">
-      {/* 🔹 ব্যাকগ্রাউন্ড ডেকোরেশন */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[30%] h-[40%] bg-red-100 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-[-10%] left-[-5%] w-[30%] h-[40%] bg-slate-200 rounded-full blur-[120px] opacity-60"></div>
@@ -25,7 +63,6 @@ export default function RegisterPage() {
         transition={{ duration: 0.5 }}
         className="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200 border border-slate-100 p-8 md:p-12 relative z-10"
       >
-        {/* লোগো বা টাইটেল */}
         <div className="text-center mb-10">
           <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">
             Join <span className="text-red-600">Care</span>
@@ -35,66 +72,90 @@ export default function RegisterPage() {
           </p>
         </div>
 
-        <form className="space-y-5">
-          {/* Full Name */}
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaUser size={18} />
             </div>
             <input
               type="text"
+              name="fullName"
+              required
+              value={formData.fullName}
+              onChange={handleChange}
               placeholder="Full Name"
               className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
           </div>
 
-          {/* Email */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaEnvelope size={18} />
             </div>
             <input
               type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Email Address"
               className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
           </div>
 
-          {/* Phone */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaPhone size={18} />
             </div>
             <input
               type="tel"
+              name="phone"
+              required
+              value={formData.phone}
+              onChange={handleChange}
               placeholder="Phone Number"
               className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
           </div>
 
-          {/* Password */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaLock size={18} />
             </div>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Password"
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
+              className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none focus:border-red-600 focus:bg-white transition-all text-slate-900 font-medium"
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-red-600 transition-colors cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+            </button>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-red-600 !text-white py-4 rounded-2xl font-black text-lg shadow-xl shadow-red-100 hover:bg-slate-900 hover:shadow-slate-200 transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer"
+            disabled={loading}
+            className={`w-full bg-red-600 py-4 rounded-2xl shadow-xl shadow-red-100 hover:bg-slate-950 transition-all duration-300 flex items-center justify-center group cursor-pointer ${
+              loading ? "opacity-50" : ""
+            }`}
           >
-            CREATE ACCOUNT
-            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <span className="text-white !text-white font-black text-lg flex items-center gap-3">
+              {loading ? "CREATING..." : "CREATE ACCOUNT"}
+              {!loading && (
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              )}
+            </span>
           </button>
         </form>
 
-        {/* লিঙ্ক টু লগইন */}
         <div className="mt-8 text-center text-slate-600 font-medium">
           Already have an account?{" "}
           <Link
@@ -106,7 +167,6 @@ export default function RegisterPage() {
         </div>
       </motion.div>
 
-      {/* ডেকোরেটিভ টেক্সট */}
       <div className="absolute bottom-10 left-10 text-8xl font-black text-slate-200/30 -z-0 hidden lg:block select-none">
         SIGNUP
       </div>
