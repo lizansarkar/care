@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react"; // Suspense যোগ করা হয়েছে (Next.js 15 recommendation)
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react"; // 👈 সেশন তৈরির জন্য signIn ইম্পোর্ট করুন
+import { useRouter, useSearchParams } from "next/navigation"; // useSearchParams যোগ করা হয়েছে
+import { signIn } from "next-auth/react";
 import {
   FaUser,
   FaEnvelope,
@@ -15,8 +15,10 @@ import {
 } from "react-icons/fa";
 import { postUser } from "@/actions/server/auth";
 
-export default function RegisterPage() {
+// মূল ফর্ম কন্টেন্ট
+function RegisterForm() {
   const router = useRouter();
+  const searchParams = useSearchParams(); // 👈 রিডাইরেক্ট ইউআরএল চেক করার জন্য
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,6 +27,9 @@ export default function RegisterPage() {
     phone: "",
     password: "",
   });
+
+  // যদি ইউআরএল-এ redirect থাকে তবে সেটি নিবে, নয়তো হোম পেজে পাঠাবে
+  const redirectPath = searchParams.get("redirect") || "/";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,19 +45,18 @@ export default function RegisterPage() {
       const response = await postUser(formData);
 
       if (response.success) {
-        // ২. 👈 ডাটাবেসে সেভ হওয়ার পর অটোমেটিক লগইন (NextAuth Session তৈরি)
+        // ২. অটোমেটিক লগইন (NextAuth Session তৈরি)
         const loginRes = await signIn("credentials", {
           email: formData.email,
           password: formData.password,
-          redirect: false, // আমরা ম্যানুয়ালি রিডাইরেক্ট করবো
+          redirect: false,
         });
 
         if (loginRes.ok) {
           alert("Registration and Login Successful!");
-          router.push("/");
-          router.refresh(); // সেশন ডাটা আপডেট করার জন্য রিফ্রেশ জরুরি
+          router.push(redirectPath); // 👈 এখন সে নির্দিষ্ট পেজে ফিরে যাবে
+          router.refresh();
         } else {
-          // যদি সেশন তৈরি হতে সমস্যা হয় তবে লগইন পেজে পাঠান
           router.push("/login");
         }
       } else {
@@ -67,9 +71,7 @@ export default function RegisterPage() {
   };
 
   return (
-    // ... আপনার বাকি ডিজাইন কোড হুবহু এক থাকবে ...
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-12 relative overflow-hidden">
-      {/* ডিজাইন কোডগুলো এখানে বসবে */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[30%] h-[40%] bg-red-100 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-[-10%] left-[-5%] w-[30%] h-[40%] bg-slate-200 rounded-full blur-[120px] opacity-60"></div>
@@ -91,7 +93,6 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* আপনার ইনপুট ফিল্ডগুলো হুবহু আগের মতোই থাকবে */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaUser size={18} />
@@ -186,5 +187,20 @@ export default function RegisterPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+// 👈 Next.js 15 এ useSearchParams ব্যবহার করলে Suspense দিয়ে র‍্যাপ করা লাগে
+export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <RegisterForm />
+    </Suspense>
   );
 }

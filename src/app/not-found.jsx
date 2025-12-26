@@ -66,7 +66,7 @@ export default function NotFound() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-5">
             <Link
               href="/"
-              className="w-full md:w-auto bg-red-600 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl shadow-red-200 hover:bg-slate-950 transition-all duration-500 flex items-center justify-center gap-3"
+              className="w-full md:w-auto bg-red-600 !text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl shadow-red-200 hover:bg-slate-950 transition-all duration-500 flex items-center justify-center gap-3"
             >
               <FaHome size={22} /> TAKE ME HOME
             </Link>
