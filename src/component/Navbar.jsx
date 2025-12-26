@@ -6,8 +6,6 @@ import { useSession, signOut } from "next-auth/react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaUserCircle, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { motion } from "framer-motion"; 
-// অথবা যদি আপনি motion এর লেটেস্ট ভার্সন ব্যবহার করেন তবে:
-// import { motion } from "motion/react";
 import LoginButton from "./LoginButton";
 import NavLink from "./buttons/NavLink";
 
