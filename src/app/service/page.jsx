@@ -17,7 +17,7 @@ export default function Service() {
 
   const fetchInitialServices = useCallback(async () => {
     setIsLoading(true);
-    const res = await getServices(1, 10, filter);
+    const res = await getServices(1, 9, filter);
     if (res.success) {
       setAllServices(res.data);
       setHasMore(res.hasMore);
@@ -33,7 +33,7 @@ export default function Service() {
   const handleLoadMore = async () => {
     setIsMoreLoading(true);
     const nextPage = page + 1;
-    const res = await getServices(nextPage, 10, filter);
+    const res = await getServices(nextPage, 9, filter);
 
     if (res.success) {
       setAllServices((prev) => [...prev, ...res.data]);
@@ -56,11 +56,10 @@ export default function Service() {
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto text-lg leading-relaxed">
             Choose from our wide range of professional healthcare services
-            tailored for your family's needs.
+            tailored for your family s needs.
           </p>
         </div>
-
-        {/* ২. স্মার্ট ফিল্টার বার (আপনার আগের ডিজাইনে ফেরত) */}
+        
         {!isLoading && (
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((cat) => (
@@ -69,7 +68,6 @@ export default function Service() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setFilter(cat)}
-                // এখানে আপনার অরিজিনাল ক্লাসগুলো ব্যবহার করা হয়েছে
                 className={filter === cat ? "btn-primary" : "btn-outline"}
               >
                 {cat}

@@ -45,7 +45,7 @@ export default function ServiceCard({ service }) {
           </div>
 
           <Link
-            href={`/service/${service.id}`}
+            href={`/service/${service._id}`}
             className="flex items-center justify-center gap-3 px-6 h-12 bg-slate-100 rounded-2xl transition-all duration-300 shadow-sm group-hover:bg-red-600 group-hover:shadow-lg group-hover:shadow-red-500/40"
           >
             <span className="text-slate-900 font-bold text-sm transition-colors duration-300 group-hover:text-white">

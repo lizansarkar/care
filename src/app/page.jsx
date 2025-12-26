@@ -2,8 +2,7 @@
 import { CalendarDemo } from "@/component/CalendarDemo";
 import About from "@/component/home/About";
 import Banner from "@/component/home/Banner";
-import ServiceCard from "@/component/ServiceCard";
-import { services } from "@/library/servicesData";
+
 import Service from "./service/page";
 
 export default function Home() {

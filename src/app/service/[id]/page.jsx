@@ -1,56 +1,51 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { services } from "@/library/servicesData";
 import Link from "next/link";
 import Image from "next/image";
-import { FaCheckCircle, FaClock, FaTag, FaArrowLeft } from "react-icons/fa";
+import { FaCheckCircle, FaClock, FaArrowLeft } from "react-icons/fa";
 import ServiceDetailsSk from "@/component/skelitons/ServiceDetailsSk";
-import { notFound } from "next/navigation"; // 🔹 এটি ইম্পোর্ট করুন
+import { notFound } from "next/navigation";
+import { getServiceById } from "@/actions/server/services";
 
 export default function ServiceDetails({ params }) {
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false); // 🔹 এরর ট্র্যাকিংয়ের জন্য
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const resolvedParams = await params;
-      const idFromUrl = resolvedParams.id;
+      try {
+        // Next.js 15 এ params একটি Promise
+        const resolvedParams = await params;
+        const idFromUrl = resolvedParams.id;
 
-      const foundService = services.find(
-        (item) => String(item.id) === String(idFromUrl)
-      );
+        const res = await getServiceById(idFromUrl);
 
-      setTimeout(() => {
-        if (!foundService) {
-          setHasError(true); // 🔹 যদি সার্ভিস না পায়
+        if (!res.success) {
+          setHasError(true);
         } else {
-          setService(foundService);
+          setService(res.data);
         }
+      } catch (err) {
+        setHasError(true);
+      } finally {
         setIsLoading(false);
-      }, 1000);
+      }
     };
 
     fetchData();
   }, [params]);
 
-  // ১. লোডিং হলে স্কেলিটন দেখাবে
-  if (isLoading) {
-    return <ServiceDetailsSk />;
-  }
-
-  // ২. 🔹 যদি সার্ভিস না পাওয়া যায়, তবে মেইন Error404 পেজে পাঠিয়ে দিবে
-  if (hasError) {
-    return notFound();
-  }
+  if (isLoading) return <ServiceDetailsSk />;
+  if (hasError || !service) return notFound();
 
   return (
     <div className="bg-white min-h-screen pb-20">
-      {/* বাকি সব কোড আগের মতোই থাকবে */}
       <div className="relative h-[450px] w-full">
+        {/* service.image যদি আপনার ডাটাবেসে না থাকে তবে placeholder ব্যবহার হবে */}
         <Image
-          src={service.image}
-          alt={service.title || "Service Image"}
+          src={service.image || "/placeholder.jpg"}
+          alt={service.title || "Service"}
           fill
           className="object-cover"
           priority
@@ -60,7 +55,7 @@ export default function ServiceDetails({ params }) {
           <div className="max-w-6xl mx-auto px-6">
             <Link
               href="/service"
-              className="text-white/70 hover:text-white flex items-center gap-2 mb-6 transition-all font-medium"
+              className="text-white/70 hover:text-white flex items-center gap-2 mb-6 font-medium transition-all"
             >
               <FaArrowLeft /> Return to Gallery
             </Link>
@@ -78,29 +73,26 @@ export default function ServiceDetails({ params }) {
 
       <div className="max-w-6xl mx-auto px-6 mt-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
         <div className="lg:col-span-8">
-          <div className="prose prose-slate max-w-none">
-            <h3 className="text-3xl font-black text-slate-900 mb-6">
-              Service Overview
-            </h3>
-            <p className="text-slate-600 text-xl leading-relaxed mb-10">
-              {service.description}
-            </p>
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">
-              Key Benefits & Features
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {service.features?.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 group hover:border-red-200 transition-all"
-                >
-                  <FaCheckCircle className="text-red-600 mt-1 text-lg" />
-                  <span className="font-semibold text-slate-800">
-                    {feature}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <h3 className="text-3xl font-black text-slate-900 mb-6">
+            Service Overview
+          </h3>
+          <p className="text-slate-600 text-xl leading-relaxed mb-10">
+            {service.description}
+          </p>
+
+          <h3 className="text-2xl font-bold text-slate-900 mb-6">
+            Key Benefits & Features
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {service.features?.map((feature, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 group hover:border-red-200 transition-all"
+              >
+                <FaCheckCircle className="text-red-600 mt-1 text-lg" />
+                <span className="font-semibold text-slate-800">{feature}</span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -115,25 +107,9 @@ export default function ServiceDetails({ params }) {
               </span>
               <span className="text-slate-500 font-bold">/hr</span>
             </div>
-            <div className="space-y-4 mb-8 text-left bg-slate-50 p-6 rounded-3xl">
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-500 flex items-center gap-2">
-                  <FaClock /> Availability
-                </span>
-                <span className="font-bold text-slate-900">24/7 Support</span>
-              </div>
-              <div className="h-px bg-slate-200 w-full"></div>
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-500 flex items-center gap-2">
-                  <FaCheckCircle /> Verification
-                </span>
-                <span className="font-bold text-green-600 italic underline">
-                  Verified Agency
-                </span>
-              </div>
-            </div>
+            {/* বুকিং বাটন: এখানে অবশ্যই service._id ব্যবহার করবেন */}
             <Link
-              href={`/booking/${service.id}`}
+              href={`/booking/${service._id}`}
               className="btn-premium w-full block text-center"
             >
               <span className="!text-white">BOOK NOW</span>
