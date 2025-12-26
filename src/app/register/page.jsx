@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation"; // রিডাইরেক্টের জন্য
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react"; // 👈 সেশন তৈরির জন্য signIn ইম্পোর্ট করুন
 import {
   FaUser,
   FaEnvelope,
@@ -35,23 +36,40 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
+      // ১. ডাটাবেসে ইউজার সেভ করা
       const response = await postUser(formData);
 
       if (response.success) {
-        alert(response.message);
-        router.push("/");
+        // ২. 👈 ডাটাবেসে সেভ হওয়ার পর অটোমেটিক লগইন (NextAuth Session তৈরি)
+        const loginRes = await signIn("credentials", {
+          email: formData.email,
+          password: formData.password,
+          redirect: false, // আমরা ম্যানুয়ালি রিডাইরেক্ট করবো
+        });
+
+        if (loginRes.ok) {
+          alert("Registration and Login Successful!");
+          router.push("/");
+          router.refresh(); // সেশন ডাটা আপডেট করার জন্য রিফ্রেশ জরুরি
+        } else {
+          // যদি সেশন তৈরি হতে সমস্যা হয় তবে লগইন পেজে পাঠান
+          router.push("/login");
+        }
       } else {
         alert(response.message);
       }
     } catch (error) {
       console.error("Registration failed", error);
+      alert("Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
 
   return (
+    // ... আপনার বাকি ডিজাইন কোড হুবহু এক থাকবে ...
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-12 relative overflow-hidden">
+      {/* ডিজাইন কোডগুলো এখানে বসবে */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[30%] h-[40%] bg-red-100 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-[-10%] left-[-5%] w-[30%] h-[40%] bg-slate-200 rounded-full blur-[120px] opacity-60"></div>
@@ -73,6 +91,7 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {/* আপনার ইনপুট ফিল্ডগুলো হুবহু আগের মতোই থাকবে */}
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-red-600 transition-colors">
               <FaUser size={18} />
@@ -166,10 +185,6 @@ export default function RegisterPage() {
           </Link>
         </div>
       </motion.div>
-
-      <div className="absolute bottom-10 left-10 text-8xl font-black text-slate-200/30 -z-0 hidden lg:block select-none">
-        SIGNUP
-      </div>
     </div>
   );
 }
