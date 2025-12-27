@@ -17,9 +17,8 @@ export default function MyBookings() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ডাটা ফেচ করার লজিক (আপনার API অনুযায়ী পরিবর্তন করে নেবেন)
   useEffect(() => {
-    // এখানে আপনার ডাটাবেস থেকে ইউজারের বুকিং আনার কল থাকবে
+
     // dummy data for design preview
     const dummyBookings = [
       {
@@ -113,7 +112,7 @@ export default function MyBookings() {
 
                 {/* Actions */}
                 <div className="flex flex-col gap-3 w-full md:w-fit">
-                  <button className="bg-slate-900 text-white px-8 py-3 rounded-xl font-black text-sm hover:bg-red-600 transition-all cursor-pointer">
+                  <button className="bg-slate-900 !text-white px-8 py-3 rounded-xl font-black text-sm hover:bg-red-600 transition-all cursor-pointer">
                     VIEW DETAILS
                   </button>
                   {booking.status === "pending" && (

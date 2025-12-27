@@ -3,7 +3,6 @@ import React from "react";
 export default function ServiceDetailsSk() {
   return (
     <div className="bg-white min-h-screen pb-20 animate-pulse">
-      {/* 🔹 হিরো সেকশন স্কেলিটন */}
       <div className="relative h-[450px] w-full bg-slate-200">
         <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-end pb-12">
           <div className="h-4 bg-slate-300 rounded w-24 mb-6"></div>
@@ -14,9 +13,7 @@ export default function ServiceDetailsSk() {
         </div>
       </div>
 
-      {/* 🔹 কন্টেন্ট গ্রিড স্কেলিটন */}
       <div className="max-w-6xl mx-auto px-6 mt-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
-        {/* বাম পাশ (Content Area) */}
         <div className="lg:col-span-8">
           <div className="h-8 bg-slate-200 rounded-lg w-48 mb-6"></div>
           <div className="space-y-3 mb-10">
@@ -36,7 +33,6 @@ export default function ServiceDetailsSk() {
           </div>
         </div>
 
-        {/* ডান পাশ (Sticky Card) */}
         <div className="lg:col-span-4">
           <div className="bg-white border-2 border-slate-50 p-8 rounded-[3rem] shadow-sm">
             <div className="h-3 bg-slate-100 rounded w-20 mx-auto mb-4"></div>

@@ -27,14 +27,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           
-          {/* 🔹 Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <img src="/logo.png" alt="Care.xyz" className="h-8 md:h-10 w-auto" />
             </Link>
           </div>
 
-          {/* 🔹 Desktop Menu (Active Link Logic Added) */}
           <div className="hidden lg:flex items-center space-x-2">
             <ul className="flex space-x-6">
               {navLinks.map((link) => {

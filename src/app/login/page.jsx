@@ -23,7 +23,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // 🔹 ১. সাধারণ ইমেল লগইন লজিক
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -48,14 +47,13 @@ export default function LoginPage() {
     }
   };
 
-  // 🔹 ২. গুগল লগইন লজিক
+
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      // MongoDB তে ডাটা পাঠানো
       const userData = {
         fullName: user.displayName,
         email: user.email,
@@ -64,7 +62,7 @@ export default function LoginPage() {
       };
       await postUser(userData);
 
-      // NextAuth সেশন আপডেট
+
       await signIn("credentials", {
         email: user.email,
         password: "google-auth-user",
@@ -83,7 +81,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-6 py-12 relative overflow-hidden">
-      {/* 🔹 ব্যাকগ্রাউন্ড ডেকোরেশন */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[30%] h-[40%] bg-red-100 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-[-10%] right-[-5%] w-[30%] h-[40%] bg-slate-200 rounded-full blur-[120px] opacity-60"></div>
@@ -104,7 +101,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* ফর্ম ইভেন্ট হ্যান্ডলার যোগ করা হয়েছে */}
         <form onSubmit={handleEmailLogin} className="space-y-5">
           {/* Email */}
           <div className="relative group">

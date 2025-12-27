@@ -6,11 +6,11 @@ import { FaCheckCircle, FaClock, FaArrowLeft, FaTag } from "react-icons/fa";
 import ServiceDetailsSk from "@/component/skelitons/ServiceDetailsSk";
 import { notFound, useRouter, usePathname } from "next/navigation";
 import { getServiceById } from "@/actions/server/services";
-import { useSession } from "next-auth/react"; // 👈 Next-Auth সেশন যোগ করা হয়েছে
-import Swal from "sweetalert2"; // 👈 SweetAlert2 যোগ করা হয়েছে
+import { useSession } from "next-auth/react";
+import Swal from "sweetalert2";
 
 export default function ServiceDetails({ params }) {
-  const { data: session } = useSession(); // 👈 সেশন থেকে লগইন স্ট্যাটাস চেক হবে
+  const { data: session } = useSession();
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -41,7 +41,6 @@ export default function ServiceDetails({ params }) {
     fetchData();
   }, [params]);
 
-  // 🛠️ বুকিং বাটন হ্যান্ডলার (সংশোধিত)
   const handleBookingClick = (e) => {
     e.preventDefault();
 

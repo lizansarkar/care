@@ -18,7 +18,6 @@ export const authOptions = {
 
         if (!user) return null;
 
-        // গুগল লগইন ইউজারদের জন্য সরাসরি রিটার্ন
         if (credentials.password === "google-auth-user") {
           return {
             id: user._id.toString(),
@@ -27,8 +26,6 @@ export const authOptions = {
             image: user.image,
           };
         }
-
-        // সাধারণ পাসওয়ার্ড চেক
         const isValid = await bcrypt.compare(credentials.password, user.password);
         if (!isValid) return null;
 

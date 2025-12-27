@@ -8,16 +8,16 @@ import Service from "./service/page";
 export default function Home() {
   return (
     <main>
-      {/* 🔹 Banner Section */}
+      {/*  Banner Section */}
       <Banner></Banner>
 
-      {/* 🔹 About Section */}
+      {/*  About Section */}
       <About></About>
 
-      {/* 🔹 Services Section */}
+      {/*  Services Section */}
       <Service></Service>
 
-      {/* 🔹 Testimonials */}
+      {/*  Testimonials */}
       <section className="bg-gray-100 py-16">
         <h2 className="text-3xl font-semibold text-center">
           What Our Users Say

@@ -14,7 +14,6 @@ export default function Footer() {
     <footer className="bg-slate-900 text-slate-200">
       <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
         <div className="footer sm:footer-horizontal justify-between gap-10">
-          {/* 🔹 Logo & Description Section */}
           <aside className="max-w-xs">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <img src="/logo.png" alt="Care.xyz" className="h-10 w-auto" />
@@ -94,7 +93,6 @@ export default function Footer() {
             </h6>
             <div className="flex gap-4">
               {" "}
-              {/* grid এর বদলে flex দিলে অনেক সময় সহজ হয় */}
               <a
                 href="#"
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:text-white transition-all duration-300"
@@ -123,7 +121,6 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* 🔹 Copyright Section */}
         <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
           <p>
             © {new Date().getFullYear()} Care.xyz - All right reserved by ACME

@@ -7,14 +7,12 @@ export default function About() {
     <section className="relative py-20 bg-white overflow-hidden">
       <div className="max-w-7xl container mx-auto px-6 md:px-2">
         <div className="relative py-20 overflow-hidden bg-white">
-          {/* 🔹 ব্যাকগ্রাউন্ড ডেকোরেশন (ঐচ্ছিক) */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-50">
             <div className="absolute top-10 left-[-5%] w-72 h-72 bg-red-50 rounded-full blur-[120px]"></div>
           </div>
 
           <div className="max-w-6xl mx-auto px-6 relative z-10">
             <div className="flex flex-col items-center text-center">
-              {/* ছোট ট্যাগলাইন */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 mb-6">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -25,7 +23,6 @@ export default function About() {
                 </span>
               </div>
 
-              {/* মেইন টাইটেল */}
               <h1 className="text-4xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-8">
                 We Are Dedicated To <br />
                 <span className="text-red-600 relative">
@@ -48,7 +45,6 @@ export default function About() {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* 🔹 ১. ইমেজ সেকশন (ব্যানারের মতো একটু ক্রিয়েটিভ লুক) */}
           <div className="relative w-full lg:w-1/2">
             <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl border-b-4 border-red-500">
               <img
@@ -57,12 +53,10 @@ export default function About() {
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
-            {/* ডেকোরেশন এলিমেন্ট */}
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-red-50/80 -z-0 rounded-full blur-2xl"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-50/80 -z-0 rounded-full blur-xl"></div>
           </div>
 
-          {/* 🔹 ২. টেক্সট কন্টেন্ট */}
           <div className="w-full lg:w-1/2">
             <div className="inline-block px-4 py-1 rounded-full bg-red-100 text-red-600 font-bold text-sm mb-4">
               WHO WE ARE
@@ -84,7 +78,6 @@ export default function About() {
               to baby care, elderly support, and home nursing.
             </p>
 
-            {/* ছোট ৩টি কি পয়েন্ট */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {[
                 { title: "24/7 Support", icon: "❤️" },
@@ -121,18 +114,14 @@ export default function About() {
           </div>
         </div>
 
-        {/* 🔹 ৩. মিশন ও ভিশন কার্ডস (ইউনিক বেন্টো গ্রিড লেআউট) */}
         <div className="mt-24 px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
-            {/* 🔸 Mission Card (বড় কার্ড - বাম পাশে, ব্যাকগ্রাউন্ড ইমেজ সহ) */}
             <div className="md:col-span-2 md:row-span-2 relative rounded-[2.5rem] overflow-hidden group border border-white/10 shadow-2xl">
-              {/* ব্যাকগ্রাউন্ড ইমেজ */}
               <img
                 src="https://images.unsplash.com/photo-1536640712247-c575b13c663b?auto=format&fit=crop&q=80&w=800"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 alt="Mission"
               />
-              {/* ডার্ক ওভারলে এবং লাল গ্লো */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent group-hover:via-red-900/40 transition-colors duration-500"></div>
 
               <div className="relative z-10 p-10 h-full flex flex-col justify-end">
@@ -167,7 +156,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* 🔸 Vision Card (উপরের কার্ড - ডান পাশে, ইমেজ সহ) */}
             <div className="md:col-span-2 relative rounded-[2.5rem] overflow-hidden group shadow-xl border border-white/5">
               <img
                 src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80&w=800"
@@ -187,7 +175,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* 🔸 Values Card (সলিড লাল গ্লো কার্ড) */}
             <div className="bg-red-600 rounded-[2.5rem] p-8 flex flex-col justify-center relative overflow-hidden group cursor-pointer shadow-[0_15px_30px_rgba(220,38,38,0.3)]">
               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
               <div className="relative z-10">
@@ -198,11 +185,8 @@ export default function About() {
                   Empathy, Integrity, and Excellence.
                 </p>
               </div>
-              {/* হোভার স্পার্ক */}
               <div className="absolute -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-40 group-hover:animate-shine"></div>
             </div>
-
-            {/* 🔸 Stats Card (ডার্ক প্রিমিয়াম কার্ড) */}
             <div className="bg-slate-900 rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center border border-white/10 group">
               <span className="text-5xl font-black text-white group-hover:text-red-500 transition-colors duration-300">
                 10k+

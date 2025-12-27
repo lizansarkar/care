@@ -190,7 +190,6 @@ function RegisterForm() {
   );
 }
 
-// 👈 Next.js 15 এ useSearchParams ব্যবহার করলে Suspense দিয়ে র‍্যাপ করা লাগে
 export default function RegisterPage() {
   return (
     <Suspense
