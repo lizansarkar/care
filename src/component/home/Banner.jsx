@@ -43,7 +43,7 @@ export default function Banner() {
         <h1 className="text-4xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
           Find the Perfect <span className="text-red-500">Care</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto drop-shadow-md">
+        <p className="text-lg md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto drop-shadow-md">
           Trusted professional care services for babies, elderly, and home nursing.
         </p>
         <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">

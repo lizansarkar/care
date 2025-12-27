@@ -71,7 +71,7 @@ export default function About() {
             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
               At{" "}
               <span className="font-bold text-slate-800 text-red-500">
-                Care.xyz
+                Care
               </span>
               , we believe that every family deserves peace of mind. Our
               platform connects you with highly trained professionals dedicated

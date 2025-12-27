@@ -98,7 +98,7 @@ export default function Navbar() {
             ) : (
               <>
                 <LoginButton />
-                <Link href="/register" className="btn-primary !text-white !bg-red-600 px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-red-200 hover:bg-slate-900 transition-all">
+                <Link href="/register" className="btn-primary w-full text-center rounded-3xl shadow-md px-6 py-2.5">
                   Register
                 </Link>
               </>
