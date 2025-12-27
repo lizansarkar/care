@@ -99,7 +99,7 @@ export default function About() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/services"
+                href="/service"
                 className="bg-red-500 hover:bg-red-600 !text-white px-8 py-3 rounded-full font-bold shadow-lg transition-all"
               >
                 Our Services

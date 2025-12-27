@@ -116,7 +116,7 @@ export default function Service() {
             <button
               onClick={handleLoadMore}
               disabled={isMoreLoading}
-              className="bg-slate-900 text-white px-10 py-4 rounded-2xl font-black hover:bg-red-600 transition-all duration-300 disabled:opacity-50 flex items-center gap-2"
+              className="bg-red-600 !text-white px-10 py-4 rounded-2xl font-black hover:bg-slate-900 transition-all duration-300 disabled:opacity-50 flex items-center gap-2 cursor-pointer"
             >
               {isMoreLoading ? (
                 <>

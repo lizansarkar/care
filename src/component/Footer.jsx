@@ -88,32 +88,32 @@ export default function Footer() {
 
           {/* 🔹 Social Media (Fixed) */}
           <nav>
-            <h6 className="footer-title text-white opacity-100 border-b-2 border-red-500 mb-4">
+            <h6 className="footer-title !text-white opacity-100 border-b-2 border-red-500 mb-4">
               Social
             </h6>
             <div className="flex gap-4">
               {" "}
               <a
                 href="#"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:text-white transition-all duration-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:!text-white transition-all duration-300"
               >
                 <FaFacebookF size={18} />
               </a>
               <a
                 href="#"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:text-white transition-all duration-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:!text-white  transition-all duration-300"
               >
                 <SiX size={16} />
               </a>
               <a
                 href="#"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:text-white transition-all duration-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:!text-white  transition-all duration-300"
               >
                 <FaYoutube size={18} />
               </a>
               <a
                 href="#"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:text-white transition-all duration-300"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 hover:bg-red-500 hover:!text-white  transition-all duration-300"
               >
                 <FaInstagram size={18} />
               </a>
