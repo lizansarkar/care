@@ -1,4 +1,5 @@
 "use client";
+import ContactSkeletons from "@/component/skelitons/ContactSkeletons";
 import React from "react";
 import {
   FaPhoneAlt,
@@ -15,16 +16,25 @@ export default function Contact() {
     alert("Thank you! Your message has been sent.");
   };
 
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <ContactSkeletons></ContactSkeletons>
+
   return (
     <section className="relative py-8 bg-white overflow-hidden min-h-screen flex items-center">
-      {/* 🌌 Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none -z-10">
         <div className="absolute top-20 left-[-10%] w-96 h-96 bg-red-50 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-20 right-[-10%] w-80 h-80 bg-slate-100 rounded-full blur-[100px] opacity-60"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 w-full">
-        {/* 🏆 Header Section */}
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 text-red-600 mb-6">
             <span className="relative flex h-2 w-2">
@@ -45,7 +55,6 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* 📍 Contact Information (বাকি ডাটা একই আছে) */}
           <div className="space-y-8 lg:pr-12 lg:mt-1">
             <div>
               <h3 className="text-2xl font-black text-slate-800 mb-4">
@@ -103,9 +112,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* 📝 New Form Style (Service Booking Form এর স্টাইলে) */}
           <div className="bg-white rounded-[3rem] shadow-2xl shadow-slate-200 border border-slate-100 overflow-hidden">
-            {/* Form Header - Dark Style */}
             <div className="bg-slate-900 p-8 text-center">
               <h2 className="text-2xl font-black text-red-600 uppercase tracking-tighter">
                 Send a <span className="text-white">Message</span>

@@ -1,8 +1,19 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import AboutSkeletons from "../skelitons/AboutSkeletons";
 
 export default function About() {
+    const [loading, setLoading] = React.useState(true);
+  
+    React.useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }, []);
+  
+    if (loading) return <AboutSkeletons></AboutSkeletons>
   return (
     <section className="relative py-20 bg-white overflow-hidden">
       <div className="max-w-7xl container mx-auto px-6 md:px-2">
